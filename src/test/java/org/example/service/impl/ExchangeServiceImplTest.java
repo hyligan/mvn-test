@@ -2,6 +2,8 @@ package org.example.service.impl;
 
 import com.google.gson.Gson;
 import org.example.dto.ExchangeDto;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +20,10 @@ public class ExchangeServiceImplTest {
     public static void init(){
         exchangeService = new ExchangeServiceImpl();
     }
+    @AfterAll
+    public static void end(){
+        System.out.println("the end!");
+    }
     private Method getResultForGETRequestMethod() throws NoSuchMethodException {
         Method method = exchangeService.getClass().getDeclaredMethod("resultForGETRequest", String.class);
         method.setAccessible(true);
@@ -25,10 +31,10 @@ public class ExchangeServiceImplTest {
     }
     @Test
     void resultForGETRequestSuccess() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        String invoke = (String) getResultForGETRequestMethod().invoke(exchangeService, "https://random-data-api.com/api/v2/users?size=2&response_type=json");
+        String invoke = (String) getResultForGETRequestMethod().invoke(exchangeService, "https://random-data-api.com/api/v2/users?size=5&response_type=json");
         assertNotNull(invoke);
         Object[] objects = new Gson().fromJson(invoke, Object[].class);
-        assertEquals(2,objects.length);
+        assertEquals(5,objects.length);
     }
     @Test
     void getExchangeSuccess() throws IOException {
