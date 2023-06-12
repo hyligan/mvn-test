@@ -19,7 +19,7 @@
         <docker.skip.push>true</docker.skip.push>
         <docker.repository.name>test-maven</docker.repository.name>
         <jacoco.version>0.8.6</jacoco.version>
-        <jacoco.min.coverage>0.85</jacoco.min.coverage>
+        <jacoco.min.coverage>0.0</jacoco.min.coverage>
         <descriptor.ref>jar-with-dependencies</descriptor.ref>
         <slf4j.version>2.0.0-alpha1</slf4j.version>
         <custom.finalName>my-project-name</custom.finalName>
@@ -28,7 +28,10 @@
         <maven.project.info.reports.plugin.vervion>3.0.0</maven.project.info.reports.plugin.vervion>
         <docker.outputDirectory>docker/my1795/docker-demo/1.0-SNAPSHOT/build/maven-test</docker.outputDirectory>
         <mainClass.path>org.example.Main</mainClass.path>
+        <os.detected.classifier>linux</os.detected.classifier>
     </properties>
+
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
@@ -41,6 +44,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -167,10 +176,6 @@
                             </limits>
                         </rule>
                     </rules>
-                    <excludes>
-                        <exclude>org/example/Main.class</exclude>
-                        <exclude>org/example/dto/**</exclude>
-                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

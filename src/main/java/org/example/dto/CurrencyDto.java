@@ -1,12 +1,9 @@
 package org.example.dto;
 
 import java.math.BigDecimal;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Objects;
 
 public class CurrencyDto {
-  private static final Logger LOGGER = LoggerFactory.getLogger(CurrencyDto.class);
 
   private String currency;
   private BigDecimal value;
@@ -27,7 +24,24 @@ public class CurrencyDto {
     this.value = value;
   }
 
-  public void log(){
-    LOGGER.info("currency = {}, value = {}",currency,value);
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    CurrencyDto that = (CurrencyDto) o;
+    return Objects.equals(currency, that.currency);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(currency);
+  }
+
+  @Override
+  public String toString() {
+    return "CurrencyDto{" +
+            "currency='" + currency + '\'' +
+            ", value=" + value +
+            '}';
   }
 }
