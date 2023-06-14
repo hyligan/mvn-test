@@ -4,6 +4,16 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class ExchangeDto {
+    public ExchangeDto() {
+    }
+
+    public ExchangeDto(String ccy, String base_ccy, BigDecimal buy, BigDecimal sale) {
+        this.ccy = ccy;
+        this.base_ccy = base_ccy;
+        this.buy = buy;
+        this.sale = sale;
+    }
+
     private String ccy;
     private String base_ccy;
     private BigDecimal buy;

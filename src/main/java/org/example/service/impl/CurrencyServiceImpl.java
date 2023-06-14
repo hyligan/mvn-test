@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
@@ -21,6 +20,10 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     public CurrencyServiceImpl() {
         this.exchangeService = new ExchangeServiceImpl();
+    }
+
+    public CurrencyServiceImpl(ExchangeService exchangeService) {
+        this.exchangeService = exchangeService;
     }
 
     @Override
